@@ -1,0 +1,10 @@
+unresolved_accounts:
+  - Imbalance-GBP
+  - Assets.Current Assets.Checking Account.Unresolved
+matches:
+  - Assets.Current Assets.Checking Account:
+      - Expenses.Groceries:
+          - CASH *
+          - TESCO*
+      - Income.Salary:
+          - MYEMPLOYER
