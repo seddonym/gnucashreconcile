@@ -23,7 +23,9 @@ class CommandHandler:
         parser = ArgumentParser()
         parser.add_argument("config", help="The name of the .yml file that contains the matching configuration.")
         parser.add_argument("accounts", help="The name of the GnuCash file that contains the accounts.")
+        
         args = parser.parse_args()
+        
         self.config_filename = args.config
         self.book_filename = args.accounts
 
