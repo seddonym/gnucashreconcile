@@ -47,7 +47,17 @@ class CommandHandler:
         return Book(filename=self.book_filename)
     
     def render_suggestions(self):
-        self.print_message('Suggestions: {}'.format(self.suggestions))
+        self.print_message('Suggestions for unresolved transactions:')
+        self.print_message('Date\tDescription\tAmount\tDebit\tCredit')
+        for suggestion in self.suggestions:
+            parts = [str(part) for part in (
+                suggestion.date,
+                suggestion.description,
+                suggestion.amount,
+                suggestion.debit_account,
+                suggestion.credit_account,
+            )]
+            self.print_message('\t'.join(parts))
     
     def save_suggestions(self):
         self.print_message('Saved.')
@@ -56,7 +66,7 @@ class CommandHandler:
         YES, NO = 'y', 'n'
 
         while True:
-            user_input = input('Save matches? (y/n): ').lower()
+            user_input = input('Accept these suggestions? (y/n): ').lower()
             if user_input in [YES, NO]:
                 break
             else:

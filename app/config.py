@@ -10,7 +10,7 @@ class Config:
     def _load_from_file(self, filename):
         """Parses the supplied yaml filename.
         """
-        with open("files/accounts.yaml") as config_file:
+        with open(filename) as config_file:
             yaml_string = config_file.read()
             self._config_dict = yaml.load(yaml_string)
  
