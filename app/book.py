@@ -1,6 +1,15 @@
 import piecash
 
- 
+class Transaction:
+    #def __init__(self, piecash_transaction):
+    #    self._piecash_transaction = piecash_transaction
+    # TODO - use a piecash transaction instead
+    def __init__(self, date, description, amount):
+        self.date = date
+        self.description = description
+        self.amount = amount
+
+
 class Book:
     """The entire account GnuCash book.
     """

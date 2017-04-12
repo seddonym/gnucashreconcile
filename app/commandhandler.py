@@ -1,8 +1,19 @@
 from argparse import ArgumentParser
 import sys
+from moneyed import GBP
+from moneyed.localization import (format_money, _format as set_money_format,
+                                  _sign as set_currency_sign)
 from .config import Config
 from .book import Book
 from .matcher import Matcher
+from decimal import ROUND_HALF_UP
+
+
+set_money_format('en_GB', group_size=3, group_separator=",", decimal_point=".",
+                 positive_sign="", trailing_positive_sign="",
+                 negative_sign="-", trailing_negative_sign="",
+                 rounding_method=ROUND_HALF_UP)
+set_currency_sign('en_GB', GBP, prefix='£')
 
 
 class CommandHandler:
@@ -51,9 +62,9 @@ class CommandHandler:
         self.print_message('Date\tDescription\tAmount\tDebit\tCredit')
         for suggestion in self.suggestions:
             parts = [str(part) for part in (
-                suggestion.date,
+                suggestion.date.strftime('%d/%m/%Y'),
                 suggestion.description,
-                suggestion.amount,
+                format_money(suggestion.amount, locale='en_GB'),
                 suggestion.debit_account,
                 suggestion.credit_account,
             )]
